@@ -5,7 +5,6 @@ import { ButtonGroupRoot, ButtonGroupRow } from "./buttonGroupStyle";
 
 const ButtonGroup = props => {
   var onClick = value => {
-    console.log("Value :", value);
     props.onClick(value);
   };
 

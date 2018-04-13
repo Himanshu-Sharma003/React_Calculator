@@ -3,7 +3,7 @@ import math from "mathjs";
 export default function calculate(obj, buttonName) {
   if (buttonName === "CE") {
     return {
-      lastNumber: 0
+      lastNumber: "0"
     };
   }
   if (buttonName === "C") {
@@ -69,19 +69,22 @@ export default function calculate(obj, buttonName) {
       }
       return {};
     } else {
-      if (!obj.lastNumber && obj.total) {
-        return {
-          stack: [...obj.stack, obj.total, buttonName],
-          operation: buttonName,
-          lastNumber: undefined
-        };
-      } else if (obj.operation) {
+      if (obj.operation) {
+        console.log(obj.stack)
         obj.stack.pop();
+        console.log(obj.stack)
         return {
           operation: buttonName,
           stack: [...obj.stack, buttonName]
         };
       }
+      if (obj.total) {
+        return {
+          stack: [...obj.stack, obj.total, buttonName],
+          operation: buttonName,
+          lastNumber: undefined
+        };
+      } 
       return {
         total: obj.lastNumber,
         lastNumber: undefined,
