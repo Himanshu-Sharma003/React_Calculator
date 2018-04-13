@@ -19,23 +19,13 @@ export default function calculate(obj, buttonName) {
     if (buttonName === "0" && obj.lastNumber === "0") {
       return {};
     }
-    // If there is no operation, update next and clear the value
-    if (obj.lastNumber) {
-      return {
-        total: obj.total,
-        lastNumber: obj.lastNumber + buttonName
-      };
-    }
     return {
-      lastNumber: buttonName,
-      total: obj.total
+      lastNumber: (!obj.lastNumber || obj.lastNumber==="0")? buttonName : obj.lastNumber + buttonName,
+      total: obj.operation ? obj.total : undefined
     };
   } else {
     if (buttonName === ".") {
-      if (obj.lastNumber) {
-        if (obj.lastNumber.includes(".")) {
-          return {};
-        }
+      if (obj.lastNumber && !obj.lastNumber.includes(".")) {
         return { lastNumber: obj.lastNumber + "." };
       }
       if (obj.operation) {
@@ -55,41 +45,30 @@ export default function calculate(obj, buttonName) {
       if (obj.lastNumber && obj.operation) {
         return {
           total: operate(obj.total, obj.lastNumber, obj.operation),
-          lastNumber: null,
+          lastNumber: undefined,
           operation: undefined,
           stack: []
         };
       }
     } else if (buttonName === "+/-") {
-      if (obj.lastNumber) {
-        return { lastNumber: (-1 * parseFloat(obj.lastNumber)).toString() };
-      }
-      if (obj.total) {
-        return { total: (-1 * parseFloat(obj.total)).toString() };
-      }
-      return {};
+        if (obj.lastNumber) {
+          return { lastNumber: (-1 * parseFloat(obj.lastNumber)).toString() };
+        }
+        if (obj.total) {
+          return { total: (-1 * parseFloat(obj.total)).toString() };
+        }
+        return {};
     } else {
+      let stack = [...obj.stack, obj.lastNumber, buttonName];
       if (obj.operation) {
-        console.log(obj.stack)
         obj.stack.pop();
-        console.log(obj.stack)
-        return {
-          operation: buttonName,
-          stack: [...obj.stack, buttonName]
-        };
+        stack=[...obj.stack, buttonName]
       }
-      if (obj.total) {
-        return {
-          stack: [...obj.stack, obj.total, buttonName],
-          operation: buttonName,
-          lastNumber: undefined
-        };
-      } 
       return {
-        total: obj.lastNumber,
+        total: obj.total ? obj.total : obj.lastNumber,
         lastNumber: undefined,
         operation: buttonName,
-        stack: [...obj.stack, obj.lastNumber, buttonName]
+        stack: (obj.total && !obj.operation)? ([...obj.stack, obj.total, buttonName] ): stack
       };
     }
   }
