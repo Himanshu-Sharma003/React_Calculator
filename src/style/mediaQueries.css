@@ -1,0 +1,4 @@
+@custom-media --small-modbile-view screen and (max-width: 480px);
+@custom-media --modbile-view screen and (max-width: 767px);
+@custom-media --tablet-viewt screen and (min-width: 768px);
+@custom-media --large-view screen and (min-width: 960px);

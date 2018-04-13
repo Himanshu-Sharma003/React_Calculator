@@ -20,16 +20,14 @@
     "react-dom": "^16.2.0",
     "style-loader": "^0.19.1",
     "webpack": "3.10.0",
-    "webpack-dev-server": "^2.11.0",
-    "youtube-api-search": "^0.0.5"
+    "webpack-dev-server": "^2.11.0"
   },
   "scripts": {
     "babel": "babel --presets es2015 ./app/index.js -o dist/bundle.js",
     "build": "webpack",
     "build-prod": "webpack -p",
     "start": "webpack-dev-server --inline --hot",
-    "dev": "NODE_ENV=dev_cache webpack-dev-server --inline --hot",
-    "offline": "node ./yarn-local.js install --offline --pure-lockfile --ignore-optional --ignore-platform"
+    "dev": "NODE_ENV=dev_cache webpack-dev-server --inline --hot"
   },
   "babel": {
     "presets": [
@@ -40,6 +38,9 @@
     "ENV": "DEV"
   },
   "dependencies": {
-    "html-loader": "^0.5.4"
+    "babel-preset-env": "^1.6.1",
+    "html-loader": "^0.5.4",
+    "mathjs": "^4.1.1",
+    "styled-components": "^3.2.5"
   }
 }

@@ -7,7 +7,7 @@ var extractPlugin = new ExtractTextPlugin({
 });
 
 module.exports = {
-  entry:['./src/index.js'],
+  entry:['./src/app.js'],
   output:{
     // Output path has to absolure path , will not work with relative path
     path: path.resolve(__dirname,'dist'),
