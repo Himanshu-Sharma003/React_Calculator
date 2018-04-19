@@ -10,7 +10,7 @@ import {
 const DisplayPanel = props => { 
   return (
     <Wrapper>
-        <StyleDisplaySub value={(props.stack).join().replace(/,/g," ")} />
+        <StyleDisplaySub>{(props.stack).join().replace(/,/g," ")}</StyleDisplaySub>
         <StyledDisplay>{props.result}</StyledDisplay>
     </Wrapper>
   );

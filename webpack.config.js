@@ -1,55 +1,55 @@
-
-var path = require('path');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var path = require("path");
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 var extractPlugin = new ExtractTextPlugin({
-  filename: 'main.css'
+  filename: "main.css"
 });
 
 module.exports = {
-  entry:['./src/app.js'],
-  output:{
+  entry: ["./src/app.js"],
+  output: {
     // Output path has to absolure path , will not work with relative path
-    path: path.resolve(__dirname,'dist'),
-    filename:'bundle.js',
-    publicPath: '/dist'
+    path: path.resolve(__dirname, "dist"),
+    filename: "bundle.js",
+    publicPath: "/dist"
   },
-  module:{
+  module: {
     rules: [
-      { 
-        test: /\.js$/, 
-        use:  [
+      {
+        test: /\.js$/,
+        use: [
           {
-          loader:"babel-loader",
-          options: {
-            presets: ["es2015", "react"]
+            loader: "babel-loader",
+            options: {
+              presets: ["es2015", "react","stage-1"],
+              plugins: ["transform-decorators-legacy"]
+            }
           }
-        }
         ]
       },
       {
         test: /\.css/,
         use: extractPlugin.extract({
-          use:['css-loader']
-            })
-        },
-        {
-          test:/.html$/,
-          use:['html-loader']
-        },
-        {
-          test: /.(jpeg|png|svg)$/,
-          use:[{
-            loader: 'file-loader',
+          use: ["css-loader"]
+        })
+      },
+      {
+        test: /.html$/,
+        use: ["html-loader"]
+      },
+      {
+        test: /.(jpeg|png|svg)$/,
+        use: [
+          {
+            loader: "file-loader",
             options: {
-              name: '[name].[ext]',
-              outputpath:'dist'
+              name: "[name].[ext]",
+              outputpath: "dist"
             }
-          }]
-        }
+          }
+        ]
+      }
     ]
   },
-  plugins: [
-    extractPlugin
-]
+  plugins: [extractPlugin]
 };

@@ -18,12 +18,12 @@ export const Display = styled.div`
   padding: 8px 4px 8px 4px;
 `
 
-export const StyleDisplaySub = styled.input`
+export const StyleDisplaySub = styled.div`
     font-size: 17px;
     text-align:right;
-    padding: 8px 8px 0px 0px;
+    padding: 20px 8px 0px 0px;
     border-width: 0px;
-    height:20%;
+    height:50px;
     background-color: ${styleVars.color.lightGrey};
     border-radius: 7px;
 `

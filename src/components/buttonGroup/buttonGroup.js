@@ -37,7 +37,7 @@ const ButtonGroup = props => {
             <Button name="+/-" onClick={onClick} orange />
             <Button name="0" onClick={onClick} />
             <Button name="." onClick={onClick} orange/>
-            <Button name="=" onClick={onClick} orange last/>
+            <Button name="=" onClick={onClick} orange last autofocus/>
         </ButtonGroupRow>
     </ButtonGroupRoot>
   );

@@ -10,6 +10,7 @@ export const Wrapper = styled.div`
 export const Button = styled.button`
   background-color: ${props => (props.orange ? "#F5923E" : "#E0E0E0")};
   color: ${props => (props.orange ? "#fff" : "#000")};
+  autofocus: ${props => (props.autofocus ? "autofocus" : "")};
   border: 0;
   width: 20%;
   font-size: 20px;
