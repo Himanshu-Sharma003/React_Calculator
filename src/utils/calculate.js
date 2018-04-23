@@ -93,6 +93,7 @@ export default function calculate(obj, buttonName) {
 }
 
 function operate(number1, number2, operation) {
+  console.log('operation',operation)
   let result;
   switch (operation) {
     case "+":
@@ -104,10 +105,13 @@ function operate(number1, number2, operation) {
     case "x":
       result = math.multiply(number1, number2);
       break;
+    case "*":
+      result = math.multiply(number1, number2);
+      break;
     case "/":
       result = math.divide(number1, number2);
       break;
   }
-
+  console.log('result',result)
   return result;
 }
